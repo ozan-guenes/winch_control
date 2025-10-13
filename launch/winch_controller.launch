@@ -1,0 +1,66 @@
+<launch>
+  <!-- Serial & servo config -->
+  <arg name="port" default="/dev/ttyUSB0"/>
+  <arg name="baud" default="57600"/>
+  <arg name="id"   default="4"/>
+
+  <!-- Direction signs (set these for your rig) -->
+  <arg name="dir_wind"   default="1"/>
+  <arg name="dir_unwind" default="-1"/>
+
+  <!-- Tension targets (mA) -->
+  <arg name="min_tension_mA"            default="300"/>
+  <arg name="tension_hysteresis_mA"     default="60"/>
+  <arg name="assist_unwind_current_mA"  default="250"/>
+  <arg name="assist_reel_current_mA"    default="220"/>
+  <arg name="idle_hold_current_mA"      default="80"/>
+
+  <!-- Slack behavior -->
+  <arg name="slack_timeout_s"           default="0.6"/>
+  <arg name="slack_tidy_max_s"          default="2.5"/>
+
+  <!-- Filters & smoothness -->
+  <arg name="rate_hz"                   default="50.0"/>
+  <arg name="ema_alpha_current"         default="0.25"/>
+  <arg name="ema_alpha_speed"           default="0.30"/>
+  <arg name="max_current_slew_mA_s"     default="3000.0"/>
+
+  <!-- Stall/end-stop guard -->
+  <arg name="use_stall_guard"           default="true"/>
+  <arg name="stall_current_mA"          default="1200.0"/>
+  <arg name="stall_speed_deg_s"         default="5.0"/>
+  <arg name="stall_confirm_s"           default="0.3"/>
+  <arg name="stall_backoff_mA"          default="150.0"/>
+  <arg name="stall_backoff_time_s"      default="0.25"/>
+
+
+  <node name="winch_ctr" pkg="winch_control" type="winch_controller.py"  output="screen">
+    <param name="port"                     value="$(arg port)"/>
+    <param name="baud"                     value="$(arg baud)"/>
+    <param name="id"                       value="$(arg id)"/>
+
+    <param name="dir_wind"                 value="$(arg dir_wind)"/>
+    <param name="dir_unwind"               value="$(arg dir_unwind)"/>
+
+    <param name="min_tension_mA"           value="$(arg min_tension_mA)"/>
+    <param name="tension_hysteresis_mA"    value="$(arg tension_hysteresis_mA)"/>
+    <param name="assist_unwind_current_mA" value="$(arg assist_unwind_current_mA)"/>
+    <param name="assist_reel_current_mA"   value="$(arg assist_reel_current_mA)"/>
+    <param name="idle_hold_current_mA"     value="$(arg idle_hold_current_mA)"/>
+
+    <param name="slack_timeout_s"          value="$(arg slack_timeout_s)"/>
+    <param name="slack_tidy_max_s"         value="$(arg slack_tidy_max_s)"/>
+
+    <param name="rate_hz"                  value="$(arg rate_hz)"/>
+    <param name="ema_alpha_current"        value="$(arg ema_alpha_current)"/>
+    <param name="ema_alpha_speed"          value="$(arg ema_alpha_speed)"/>
+    <param name="max_current_slew_mA_s"    value="$(arg max_current_slew_mA_s)"/>
+
+    <param name="use_stall_guard"          value="$(arg use_stall_guard)"/>
+    <param name="stall_current_mA"         value="$(arg stall_current_mA)"/>
+    <param name="stall_speed_deg_s"        value="$(arg stall_speed_deg_s)"/>
+    <param name="stall_confirm_s"          value="$(arg stall_confirm_s)"/>
+    <param name="stall_backoff_mA"         value="$(arg stall_backoff_mA)"/>
+    <param name="stall_backoff_time_s"     value="$(arg stall_backoff_time_s)"/>
+  </node>
+</launch>
