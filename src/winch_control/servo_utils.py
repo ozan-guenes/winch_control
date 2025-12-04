@@ -5,13 +5,13 @@ import rospy
 from dynamixel_sdk import PortHandler, PacketHandler, COMM_SUCCESS
 
 # Control-table addresses (Protocol 2.0)
-ADDR_TORQUE_ENABLE    = 64    # RW, 1 byte
+ADDR_TORQUE_ENABLE    = 512    # RW, 1 byte
 ADDR_OPERATING_MODE   = 11    # RW, 1 byte (EEPROM)
-ADDR_GOAL_CURRENT     = 102   # RW, 2 bytes, mA
-ADDR_GOAL_POSITION    = 116   # RW, 4 bytes, ticks
-ADDR_PROFILE_VELOCITY = 112   # RW, 4 bytes, ticks/sec
-ADDR_PRESENT_POSITION = 132   # R,  4 bytes, ticks
-ADDR_PRESENT_CURRENT  = 126   # R,  2 bytes, mA
+ADDR_GOAL_CURRENT     = 550   # RW, 2 bytes, mA
+ADDR_GOAL_POSITION    = 564   # RW, 4 bytes, ticks
+ADDR_PROFILE_VELOCITY = 560   # RW, 4 bytes, ticks/sec
+ADDR_PRESENT_POSITION = 580   # R,  4 bytes, ticks
+ADDR_PRESENT_CURRENT  = 574   # R,  2 bytes, mA
 
 # Operating modes
 MODE_CURRENT            = 0

@@ -1,6 +1,7 @@
 <launch>
   <!-- Serial & servo config -->
-  <arg name="port" default="/dev/ttyUSB0"/>
+  <!-- <arg name="port" default="/dev/ttyUSB0"/> -->
+  <arg name="port" default="/dev/serial/by-id/usb-FTDI_USB__-__Serial_Converter_FT9HD8W8-if00-port0"/>
   <arg name="baud" default="57600"/>
   <arg name="id"   default="4"/>
 
@@ -9,11 +10,11 @@
   <arg name="dir_unwind" default="-1"/>
 
   <!-- Tension targets (mA) -->
-  <arg name="min_tension_mA"            default="300"/>
+  <arg name="min_tension_mA"            default="260"/>
   <arg name="tension_hysteresis_mA"     default="60"/>
-  <arg name="assist_unwind_current_mA"  default="250"/>
-  <arg name="assist_reel_current_mA"    default="220"/>
-  <arg name="idle_hold_current_mA"      default="80"/>
+  <arg name="assist_unwind_current_mA"  default="700"/>
+  <arg name="assist_reel_current_mA"    default="740"/>
+  <arg name="idle_hold_current_mA"      default="200"/>
 
   <!-- Slack behavior -->
   <arg name="slack_timeout_s"           default="0.6"/>
@@ -26,7 +27,7 @@
   <arg name="max_current_slew_mA_s"     default="3000.0"/>
 
   <!-- Stall/end-stop guard -->
-  <arg name="use_stall_guard"           default="true"/>
+  <arg name="use_stall_guard"           default="false"/>
   <arg name="stall_current_mA"          default="1200.0"/>
   <arg name="stall_speed_deg_s"         default="5.0"/>
   <arg name="stall_confirm_s"           default="0.3"/>

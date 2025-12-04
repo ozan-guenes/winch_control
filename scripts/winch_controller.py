@@ -1,11 +1,11 @@
-#!/usr/bin/env python
-# winch_controller_node.py
-#
-# Three-mode winch controller using Dynamixel current control:
-#  - ASSIST: unwind on pull to maintain min tension; reel-in after slack timeout
-#  - REEL_IN: force reel-in regardless of pull
-#  - IDLE: hold light (or zero) tension; no auto unwind or tidy
-
+#!/usr/bin/env python3
+# winch_controller.py
+"""
+Three-mode winch controller using Dynamixel current control:
+ - ASSIST: unwind on pull to maintain min tension; reel-in after slack timeout
+ - REEL_IN: force reel-in regardless of pull
+ - IDLE: hold light (or zero) tension; no auto unwind or tidy
+"""
 import atexit
 import enum
 import time
@@ -14,7 +14,8 @@ from collections import deque
 import rospy
 from std_msgs.msg import String
 from std_srvs.srv import Trigger, TriggerResponse
-from winch_control.servo_utils import ServoController, MODE_CURRENT
+# from winch_control.servo_utils import ServoController, MODE_CURRENT
+from winch_control.servo_utils_pm54 import ServoController, MODE_CURRENT
 
 class Mode(enum.Enum):
     ASSIST  = "ASSIST"
@@ -272,8 +273,7 @@ class WinchControllerNode:
         try:
             self.servo.set_goal_current(0)
         except Exception:
-            pass
-
+            pass   
 
 if __name__ == "__main__":
     node = WinchControllerNode()
